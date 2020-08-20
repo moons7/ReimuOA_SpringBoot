@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import com.reimu.base.response.HttpDataContainer;
+import com.reimu.helper.response.HttpDataContainer;
 import com.reimu.shiro.SecurityHelper;
 import com.reimu.shiro.filter.CookieAuthenticationFilter;
 import com.reimu.util.StringUtils;

@@ -1,4 +1,4 @@
-package com.reimu.base.response;
+package com.reimu.helper.response;
 
 
 public class HttpDataContainer {

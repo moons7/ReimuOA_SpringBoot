@@ -4,22 +4,20 @@ package com.reimu.helper.response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.reimu.base.jackson.JacksonObjectMapperFactory;
-import com.reimu.base.response.HttpDataContainer;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class ResponseHelper implements ResponseHelperInter {
+public class ResponseHelper {
 
     private static final Logger logger = LoggerFactory.getLogger(ResponseHelper.class);
     private Object customObject;
     private ReturnFormat returnFormat = ReturnFormat.JSON;
-    private String callBackName = "callback";
     private HttpServletResponse httpServletResponse;
     private HttpDataContainer dataContainer;
 
-    public static ResponseHelperInter createBody(HttpServletResponse httpServletResponse) {
+    public static ResponseHelper createBody(HttpServletResponse httpServletResponse) {
         if (httpServletResponse.isCommitted()) {
             httpServletResponse.reset();
             if (logger.isWarnEnabled()) {
@@ -34,47 +32,36 @@ public class ResponseHelper implements ResponseHelperInter {
     }
 
 
-    @Override
-    public ResponseHelperInter setHttpStatus(int httpStatus) {
+    public ResponseHelper setHttpStatus(int httpStatus) {
         this.httpServletResponse.setStatus(httpStatus);
         return this;
     }
 
 
-    @Override
-    public ResponseHelperInter setReturnObject(Object customObject) {
+    public ResponseHelper setReturnObject(Object customObject) {
         this.customObject = customObject;
         returnFormat = ReturnFormat.CUSTOM;
         return this;
     }
 
 
-    @Override
-    public ResponseHelperInter setReturnFormat(ReturnFormat returnFormat) {
+    public ResponseHelper setReturnFormat(ReturnFormat returnFormat) {
         this.returnFormat = returnFormat;
         return this;
     }
 
 
-    @Override
-    public ResponseHelperInter setJsonPCallBackName(String name) {
-        this.callBackName = name;
-        return this;
-    }
 
-    @Override
-    public ResponseHelperInter setContentType(String type) {
+    public ResponseHelper setContentType(String type) {
         this.httpServletResponse.setContentType(type);
         return this;
     }
 
-    @Override
-    public ResponseHelperInter createDataContainer(HttpDataContainer dataContainer) {
+    public ResponseHelper createDataContainer(HttpDataContainer dataContainer) {
         this.dataContainer = dataContainer;
         return this;
     }
 
-    @Override
     public void printOut() {
         Object outObject = returnFormat == ReturnFormat.CUSTOM ? this.customObject : this.dataContainer;
         try {

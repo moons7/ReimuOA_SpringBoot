@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.reimu.base.response.HttpDataContainer;
+import com.reimu.helper.response.HttpDataContainer;
 import com.reimu.constant.RoleStatus;
 import com.reimu.dao.dto.ListQueryModel;
 import com.reimu.dao.pojo.sys.SysOrgEnt;

@@ -8,7 +8,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.pam.UnsupportedTokenException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.reimu.base.response.HttpDataContainer;
+import com.reimu.helper.response.HttpDataContainer;
 import com.reimu.helper.response.ResponseHelper;
 import com.reimu.shiro.SecurityHelper;
 import com.reimu.shiro.UsernamePasswordToken;
