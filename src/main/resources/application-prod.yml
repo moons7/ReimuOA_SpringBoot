@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: spring-cloud-el-producer
+  aop:
+    auto: true
+    proxy-target-class: true # Whether subclass-based (CGLIB) proxies are to be created (true)
+  liquibase:
+    enabled: false
+  servlet:
+    multipart:
+      maxFileSize: 500MB
+      maxRequestSize: 500MB
+  datasource:
+    master:
+      url:
+      username:
+      password: 
+      minIdle: 2
+      initialSize: 2
+      maxActive: 5
+
+
+logging:
+    config: classpath:logback.xml
+server:
+  port: 8535
+  servlet:
+    context-path: /
+project:
+  publicSalt: reimuOA
+  staticFile:
+    resourceHandler: /web/**
+    location:   C:/web_front/web/
+  webPath:  http://localhost:8535/web/
+  authorize: true
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+
+mybatis-plus:
+  config-location:  classpath:mybatis-config.xml
+  mapper-locations: classpath*:com/reimu/dao/xmlMapper/**/*Mapper.xml
+
+
+

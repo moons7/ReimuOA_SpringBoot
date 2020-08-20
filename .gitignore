@@ -1,0 +1,9 @@
+**/target
+/out
+/logs
+*.class
+/.idea
+/mybatisGenerator
+/classes
+*.iml
+MANIFEST.MF
