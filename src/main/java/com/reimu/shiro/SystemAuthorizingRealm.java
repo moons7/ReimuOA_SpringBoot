@@ -41,7 +41,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
         } else if (!USER_STATUS_NORMAL.equals(user.getStatus())) {
             throw new AuthenticationException("该已帐号禁止登录!");
         }
-        token.setPassword(PasswordService.encrypt(token.getPassword(), user.getSalt()).toCharArray());
+        token.setPassword(HashEncryptService.sha512Encrypt(token.getPassword(), user.getSalt()).toCharArray());
         String passWord = user.getPassword();
         int organID = ShiroUserInfoService.findUserOrganID(user.getUserId());    //获取部门ID
         int rootOrganID = ShiroUserInfoService.findRootOrganByOrganID(organID); //获取最顶级部门ID 如果为0则表示该部门就是一级部门

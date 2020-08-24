@@ -5,7 +5,7 @@ import com.reimu.dao.interMapper.sys.SysOrgEntMapper;
 import com.reimu.dao.interMapper.sys.SysUserEntMapper;
 import com.reimu.dao.pojo.sys.SysOrgEnt;
 import com.reimu.dao.pojo.sys.SysUserEnt;
-import com.reimu.shiro.PasswordService;
+import com.reimu.shiro.HashEncryptService;
 import com.reimu.util.EmptyUtils;
 import com.reimu.util.RandomUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,7 +72,7 @@ public class ShiroUserInfoService {
         sysUserEnt.setCreateTime(new Date());
         String salt = RandomUtils.getRandomNumbersAndLetters(12);
         sysUserEnt.setSalt(salt);
-        String password = PasswordService.encrypt(sysUserEnt.getPassword().toCharArray(), salt);
+        String password = HashEncryptService.sha512Encrypt(sysUserEnt.getPassword().toCharArray(), salt);
         sysUserEnt.setPassword(password);
         sysUserEnt.setUserId(null);
         sysUserEntMapper.insert(sysUserEnt);
@@ -100,16 +100,16 @@ public class ShiroUserInfoService {
     @Transactional
     public void updatePassword(SysUserEnt sysUserEnt) {
         SysUserEnt newEnt = sysUserEntMapper.selectById(sysUserEnt.getUserId());
-        newEnt.setPassword(PasswordService.encrypt(sysUserEnt.getPassword().toCharArray(), newEnt.getSalt()));
+        newEnt.setPassword(HashEncryptService.sha512Encrypt(sysUserEnt.getPassword().toCharArray(), newEnt.getSalt()));
         sysUserEntMapper.updateById(newEnt);
     }
 
     @Transactional
     public boolean updatePassword(int userID, String oldPwd, String newPwd) {
         SysUserEnt ent = sysUserEntMapper.selectById(userID);
-        String passWord = PasswordService.encrypt(oldPwd.toCharArray(), ent.getSalt());
+        String passWord = HashEncryptService.sha512Encrypt(oldPwd.toCharArray(), ent.getSalt());
         if (!ent.getPassword().equals(passWord)) return false;
-        ent.setPassword(PasswordService.encrypt(newPwd.toCharArray(), ent.getSalt()));
+        ent.setPassword(HashEncryptService.sha512Encrypt(newPwd.toCharArray(), ent.getSalt()));
         sysUserEntMapper.updateById(ent);
         return true;
     }
