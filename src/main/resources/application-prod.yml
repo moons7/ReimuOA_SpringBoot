@@ -25,7 +25,7 @@ logging:
 server:
   port: 8535
   servlet:
-    context-path: /
+    context-path:
 project:
   publicSalt: reimuOA
   staticFile:
