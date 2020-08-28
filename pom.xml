@@ -22,6 +22,7 @@
         <poi.version>4.1.2</poi.version>
         <shiro.version>1.6.0</shiro.version>
         <okhttp.version>4.2.0</okhttp.version>
+        <swagger.version>3.0.0</swagger.version>
         <jdk.version>11</jdk.version>
     </properties>
 
@@ -69,6 +70,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
+
+        <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-boot-starter</artifactId>
+          <version>${swagger.version}</version>
         </dependency>
 
         <dependency>

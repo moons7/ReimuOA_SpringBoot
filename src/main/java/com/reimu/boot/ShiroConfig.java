@@ -77,6 +77,10 @@ public class ShiroConfig {
             filterChainDefinitionMap.put("/", ReimuAnonymousFilter.FILTER_NAME);
             filterChainDefinitionMap.put("/index.html", ReimuAnonymousFilter.FILTER_NAME);
             filterChainDefinitionMap.put("/web/**", ReimuAnonymousFilter.FILTER_NAME);  //放行 静态资源
+            filterChainDefinitionMap.put("/swagger-ui/**", ReimuAnonymousFilter.FILTER_NAME);
+            filterChainDefinitionMap.put("/swagger-resources/**", ReimuAnonymousFilter.FILTER_NAME);
+            filterChainDefinitionMap.put("/v2/api-docs/**", ReimuAnonymousFilter.FILTER_NAME);
+            filterChainDefinitionMap.put("/error", ReimuAnonymousFilter.FILTER_NAME);  // springboot 默认错误页面
             filterChainDefinitionMap.put("/login/logout", "logout");
 //          filterChainDefinitionMap.put("/sys/user/", "kickout,cookieAuthFilter"); //TODO 优化判断绑定至登陆接口 防止恶意跳过此接口验证
             filterChainDefinitionMap.put("/**", CookieAuthenticationFilter.FILTER_NAME); // 为了性能,不在全局执行kickout逻辑

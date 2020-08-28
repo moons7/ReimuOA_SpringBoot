@@ -1,10 +1,12 @@
 package com.reimu.controller.sys;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import com.reimu.helper.response.HttpDataContainer;
 import com.reimu.shiro.SecurityHelper;
 import com.reimu.shiro.filter.CookieAuthenticationFilter;
@@ -16,14 +18,19 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 路由控制由前端完成,后端shiro只负责认证与授权,只返回JSON字符串与cookie
  */
-@Controller
+@RestController
+@Api(tags = "用户登录与注销")
 public class LoginController {
 
     /**
      * 登录失败，真正登录的POST请求由Filter完成
      */
-    @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @ApiOperation("用户登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "username",value = "用户名",paramType = "query",dataType = "String",required = true),
+            @ApiImplicitParam(name = "password",value = "密码",paramType = "query",dataType = "String",required = true)
+    })
+    @PostMapping("/login")
     public HttpDataContainer login(HttpServletRequest request) {
         //  错误直接由shiro抛出,如果第一次认证正确并不会进入该流程*/
        String exception = (String) request
@@ -37,8 +44,7 @@ public class LoginController {
      * 后台登出
      *
      */
-    @ResponseBody
-    @RequestMapping(value = "/login/logout", method = RequestMethod.GET)
+    @GetMapping("/login/logout")
     public HttpDataContainer logout()  {
         SecurityHelper.getSubject().logout();
         return HttpDataContainer.create(HttpDataContainer.STATUS_SUCCESS);
