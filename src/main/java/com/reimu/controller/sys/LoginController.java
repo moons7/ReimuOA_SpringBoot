@@ -1,16 +1,17 @@
 package com.reimu.controller.sys;
 
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
 import com.reimu.helper.response.HttpDataContainer;
 import com.reimu.shiro.SecurityHelper;
 import com.reimu.shiro.filter.CookieAuthenticationFilter;
 import com.reimu.util.StringUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,8 +28,8 @@ public class LoginController {
      */
     @ApiOperation("用户登录")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "username",value = "用户名",paramType = "query",dataType = "String",required = true),
-            @ApiImplicitParam(name = "password",value = "密码",paramType = "query",dataType = "String",required = true)
+            @ApiImplicitParam(name = "username",value = "用户名",paramType = "query",dataType = "String",required = true,defaultValue = "123456"),
+            @ApiImplicitParam(name = "password",value = "密码",paramType = "query",dataType = "String",required = true,defaultValue = "admin")
     })
     @PostMapping("/login")
     public HttpDataContainer login(HttpServletRequest request) {

@@ -27,7 +27,7 @@ server:
   servlet:
     context-path:
 project:
-  publicSalt: test
+  publicSalt: reimuOA
   staticFile:
     resourceHandler: /web/**
     location:   C:/web_front/dist/
