@@ -3,6 +3,9 @@
  
  由于是技术示范性脚手架,所以本项目所有依赖版本会及时更新至最新版，如果基于本脚手架开发项目，请自行锁定版本依赖。
 
+# 已完成的特性
+- [x] Shiro权限控制 (使用普Cookie方式同时依赖Redis作为Session持久层)
+- [x] Swagger 3.0 支持
 
 
 # 使用方法（逐步完善中）
@@ -17,7 +20,7 @@
 git clone git@github.com:moons7/ReimuOA_SpringBoot.git
 ```
 - 导入SQL
-    将项目根目录下的`ReimuOA.sql`导入至数据库信息
+    将项目根目录下的`ReimuOA.sql`导入至数据库信息,登录接口默认账户为`admin`密码`123456`
 - 修改数据库以及redis配置信息（redis 无密码则留空）
 ```yml
 # application-dev.yml
@@ -88,7 +91,6 @@ spring:
 
 # TODO
 - [ ] 文档完善
-- [ ] Swagger支持
 - [ ] More...
 
 # 赞助
