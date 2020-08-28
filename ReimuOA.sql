@@ -66,4 +66,6 @@ CREATE TABLE `sys_user_role`  (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
+INSERT INTO `sys_user` VALUES (1, 'admin', 'fa2f4e74a62734244f2d0c8f81ef56514b0be577adec0ddddf07d87ecbadef219f96fbae36b916186f880b5f9899d3af87bf086821666ea3d802f0db73455516', 'salt', NULL, NULL, NULL, NULL, NULL, NULL, 'normal', 'false', 0);
+
 SET FOREIGN_KEY_CHECKS = 1;
