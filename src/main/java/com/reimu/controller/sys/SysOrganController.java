@@ -1,6 +1,7 @@
 package com.reimu.controller.sys;
 
 
+import io.swagger.annotations.Api;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
 @Controller
 @RequestMapping(value = "/sys/organ")
 @Validated
+@Api(tags = "用户组织")
 public class SysOrganController {
 
     @Autowired

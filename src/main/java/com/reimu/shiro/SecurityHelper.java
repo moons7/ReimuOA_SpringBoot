@@ -111,8 +111,8 @@ public class SecurityHelper {
         throw new UnauthorizedException();
     }
 
-    //todo Fix Hard Code
     public static void deleteAllUserAuthorizationInfo() {
-        cacheManager.getCache("org.reimu.shiro.SystemAuthorizingRealm.authorizationCache").clear();
+        //todo untested
+        cacheManager.getCache(   SystemAuthorizingRealm.class.getPackage().getName()+".authorizationCache").clear();
     }
 }

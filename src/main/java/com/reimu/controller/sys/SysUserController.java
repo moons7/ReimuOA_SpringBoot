@@ -1,6 +1,7 @@
 package com.reimu.controller.sys;
 
 
+import io.swagger.annotations.Api;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-
-@Controller
+@RestController
 @RequestMapping(value = "/sys/user")
 @Validated
+@Api(tags = "用户个人")
 public class SysUserController {
 
     @Autowired
@@ -34,7 +35,6 @@ public class SysUserController {
     private SysOrganService sysOrganService;
 
 
-    @ResponseBody
     @RequestMapping(value = "/info", method = RequestMethod.GET)
     public HttpDataContainer userInfo() {
         Map<String, Object> dataMap = new HashMap<>();
@@ -42,8 +42,6 @@ public class SysUserController {
         return HttpDataContainer.create(HttpDataContainer.STATUS_SUCCESS, dataMap);
     }
 
-
-    @ResponseBody
     @RequiresRoles({RoleStatus.ADMIN})
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public HttpDataContainer userList(@Valid @ModelAttribute ListQueryModel listQueryModel) {
@@ -51,7 +49,6 @@ public class SysUserController {
                 shiroUserInfoService.getUserList(listQueryModel.getPage(), listQueryModel.getSize()));
     }
 
-    @ResponseBody
     @RequiresRoles({RoleStatus.ADMIN})
     @RequestMapping(value = "/password/update", method = RequestMethod.POST)
     public HttpDataContainer updatePassword(@Valid @ModelAttribute SysUserEnt sysUserEnt) {
@@ -59,7 +56,6 @@ public class SysUserController {
         return HttpDataContainer.create(HttpDataContainer.STATUS_SUCCESS);
     }
 
-    @ResponseBody
     @RequiresAuthentication
     @RequestMapping(value = "/password/ownupdate", method = RequestMethod.POST)
     public HttpDataContainer updateOwnPassword(@RequestParam String oldpwd,
@@ -72,7 +68,6 @@ public class SysUserController {
         }
     }
 
-    @ResponseBody
     @RequiresRoles({RoleStatus.ADMIN})
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public HttpDataContainer createUser(@Valid @ModelAttribute SysUserEnt sysUserEnt) {
@@ -85,7 +80,6 @@ public class SysUserController {
         return HttpDataContainer.create(HttpDataContainer.STATUS_SUCCESS);
     }
 
-    @ResponseBody
     @RequiresRoles({RoleStatus.ADMIN})
     @RequestMapping(value = "/create/and/organ", method = RequestMethod.POST)
     public HttpDataContainer createUser(@Valid @ModelAttribute SysUserEnt sysUserEnt,
@@ -109,7 +103,6 @@ public class SysUserController {
      * @param sysUserEnt
      * @return
      */
-    @ResponseBody
     @RequiresRoles({RoleStatus.ADMIN})
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public HttpDataContainer updateUser(@Valid @ModelAttribute SysUserEnt sysUserEnt) {
@@ -127,7 +120,6 @@ public class SysUserController {
      * @param realname
      * @return
      */
-    @ResponseBody
     @RequiresAuthentication
     @RequestMapping(value = "/update/own", method = RequestMethod.POST)
     public HttpDataContainer updateOwn(@RequestParam String realname) {
@@ -143,12 +135,10 @@ public class SysUserController {
     }
 
 
-    @ResponseBody
     @RequiresRoles({RoleStatus.ADMIN})
     @RequestMapping(value = "/del", method = RequestMethod.POST)
     public HttpDataContainer deleteUser(@Valid @ModelAttribute SysUserEnt sysUserEnt) {
         shiroUserInfoService.delUser(sysUserEnt);
         return HttpDataContainer.create(HttpDataContainer.STATUS_SUCCESS);
     }
-
 }
