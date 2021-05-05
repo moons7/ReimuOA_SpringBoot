@@ -11,9 +11,9 @@
 
     <properties>
         <!-- main version setting -->
-        <springboot.version>2.3.4.RELEASE</springboot.version>
-        <druid.version>1.1.22</druid.version>
-        <mybatis-plus.version>3.4.0</mybatis-plus.version>
+        <springboot.version>2.4.2.RELEASE</springboot.version>
+        <druid.version>1.2.5</druid.version>
+        <mybatis-plus.version>3.4.2</mybatis-plus.version>
         <!-- tools version setting -->
         <commons-lang.version>3.9</commons-lang.version>
         <commons-text.version>1.7</commons-text.version>

@@ -1,8 +1,8 @@
 package com.reimu.base.serialize;
 
+import com.reimu.util.ObjectUtils;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
-import com.reimu.util.ObjectUtils;
 
 public class ReimuRedisSerializer implements RedisSerializer<Object> {
 
